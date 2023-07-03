@@ -1,0 +1,83 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}{{title|default}}{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <!-- Bootstrap -->
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body %}
+    
+    {% block content %}
+    <!-- render flash messages in base to enable flash in all pages-->
+    <div class="container">
+      {% block navbar %}
+    <!--style="background-color: darkblue;-->
+      <nav class="navbar">
+        <a class="navbar-brand" href="#">
+          <img src="{{url_for('static', filename='images/pile.jpg')}}"
+          class="icon" alt="Pile" />
+        </a>
+        <!--button type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" class="navbar-toggler"
+        aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+    	  <span class="navbar-toggler-icon"></span>
+  	</button-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <a class="nav-item h2 active" href="#">Home</a>
+	      <a class="nav-item h2" href="#">Books</a>
+	      <a class="nav-item h2 disabled" href="#">Members</a>
+	      <a class="nav-item h2" href="#">Transactions</a>
+	    </ul>
+  	    <!--form class="form-inline">
+  	      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  	    </form-->
+  	</div>
+      </nav>    
+      {%- endblock navbar %}
+      {% block page_content %}
+      <div class="page_content">
+	{% block sidebar %}
+	<div class="sidebar">
+
+	</div>
+	{% endblock sidebar %}
+	{% block main %}
+	<div class="main">
+	  {% for message in get_flashed_messages() %}
+	  <div class="alert alert-warning">
+	    <button type="button" class="close" data_dismiss="alert">&times</button>
+	    {{ message }}
+	  </div>
+	  {% endfor %}
+	  {% block main_content %}{% endblock main_content %}
+	</div>
+	{% endblock main %}
+      </div>
+      {% endblock page_content %}
+    </div>
+    {%- endblock content %}
+    
+    {% block scripts %}
+    <script src="{{url_for('static', filename='jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+    {%- endblock scripts %}
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
