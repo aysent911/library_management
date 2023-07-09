@@ -20,7 +20,6 @@ figure,
 footer,
 header,
 hgroup,
-main,
 menu,
 .navbar {
   color: white;
@@ -34,14 +33,14 @@ menu,
 .navbar .navbar-brand {
   float: left;
   height: auto;
-  padding: auto;
+  padding-right: 10px;
   font-size: 18px;
   line-height: 20px;
 }
 .navbar .navbar-brand .icon {
   display: inline-block;
   width: 40px;
-  height: 40px%;
+  height: 40px;
 }
 .navbar-nav .nav-item {
   padding-right:15px;
@@ -55,22 +54,134 @@ menu,
  height: 91%;
 }
 .container .page_content .sidebar {
-  background: #f0f0f0;
+  background: #00008b;
   position: relative;
   top: 0;
   left: 0;
   width: 20%;
   height: 100%;
-  padding: 20px 0;
+  padding: auto;
   display: table-cell;
-  box-shadow: inset 0 0 10px black;
-  border: inset;
+  /*border-radius: 5%;*/
+  margin-top:5px;
+  margin-bottom: 5px;
   transition: all 0.5s ease;
+}
+.container .page_content .sidebar .sidebar_list{
+  padding: auto;
+  background: #00008b;
+  /*background: white;*/
+  margin: 2% 0px 2% 0px;
+  border-radius: 5%;
+  width: 100%;
+  height: auto;
+}
+.container .page_content .sidebar .sidebar_list > li{
+  margin-top: 5px;
+  margin-top: 5px;
+  width: 100%;
+  height: auto;  
+  background: #00008b;
+  padding: 0px 15px 0px 15px;
+  /*border-radius: 5%;*/
+  padding: 5px 20px 5px 20px;
+}
+.sidebar .sidebar_list > li .sidebar_item{
+  color: #ffffff;
+  border: none;
+  background:#00008b;
+}
+.container .page_content .sidebar .sidebar_list > li:hover,
+.container .page_content .sidebar .sidebar_list > li:hover .sidebar_item,
+.container .page_content .sidebar .sidebar_list > li:hover .sidebar_item .sidebar_text,
+.container .page_content .main .new_book_body > li .new_book_button:hover{
+  background:#0000c0;
+  /*color: #00008b;*/
+  /*border-radius:5%;*/
+}
+.container .page_content .sidebar .sidebar_list > li .sidebar_item:hover > input{
+  background:#ffffff;
+  color: #000000;
+  /*border-radius:5%;*/
+}
+.container .page_content .sidebar .sidebar_list > li:active,
+.container .page_content .sidebar .sidebar_list > li:active .sidebar_item,
+.container .page_content .sidebar .sidebar_list > li:active .sidebar_item .sidebar_text,
+.container .page_content .sidebar .sidebar_list > li:active .sidebar_item > input,
+.container .page_content .main .new_book_body > li .new_book_button:active{
+  background:#ffffff;
+  color: #00008b;
+  /*border-radius:5%;*/
+}
+.sidebar .sidebar_list > li .sidebar_item > input{
+  background:#00008b;
+  border: none;
+  font-weight: normal;
+  font-size: 18px;
+  width:auto;
+  /*white-space: nowrap;*/
+  /*opacity: 0;*/
+}
+.sidebar .sidebar_list > li .sidebar_item .sidebar_text{
+  font-size: 18px;
+  font-weight: 400;
+  padding: 0px 15px 0px 15px;
+  /*white-space: nowrap;*/
+  /*opacity: 0;
+  pointer-events: none;*/
 }
 .container .page_content .main{
   display: table-cell;
+  background: #f0f0e0;
+  /*border-radius: 5%;*/
   width: 75%;
   height:100%;
+}
+.container .page_content .main .new_book_header{
+  font-size: 20px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  font-weight: 600;
+  text-align: center;
+}
+.container .page_content .main .new_book_body{
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
+  /*font-weight: 200;
+  text-align: center;*/
+  background: #f0f0f0;
+  /*border-style: solid;
+  border-width: medium;
+  border-color: black;*/
+  box-shadow: -3px 3px 10px rgb(0 0 0 / 0.5);
+}
+.container .page_content .main .new_book_body > li{
+  padding-bottom: 2%;
+  margin-left: 7%;
+  margin-right: 7%;
+  font-size: 18px;
+  /*font-weight: 200;*/
+  /*text-align: center;*/
+}
+.container .page_content .main .new_book_body > li .new_book_label{
+  width: 25%;
+  font-weight: 600;
+}
+.container .page_content .main .new_book_body > li .new_book_value{
+  width: 60%;
+  /*font-weight: 200;
+  text-align: center;*/
+}
+.container .page_content .main .new_book_body > li .new_book_button{  
+  margin-left: 5%;
+  padding: 3px 5% 3px 5%;
+  width: 35%;
+  font-weight: 600;
+  background: #00008b;
+  color: #ffffff;
+  border: none;  
 }
 section,
 summary {
@@ -1458,16 +1569,17 @@ a.bg-danger:focus {
   background-color: #e4b9b9;
 }
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
-  border-bottom: 1px solid #eee;
 }
-ul,
+ul,li{
+/*remove bullets in unordered list(ul) and li globally*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
-ul ul,
 ol ul,
 ul ol,
 ol ol {
@@ -5063,10 +5175,11 @@ a.thumbnail.active {
   color: #333;
 }
 .alert {
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 1%;
   border: 1px solid transparent;
-  border-radius: 4px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align:center;
 }
 .alert h4 {
   margin-top: 0;

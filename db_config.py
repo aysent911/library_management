@@ -78,7 +78,7 @@ class Stock(db.Model):
   copies = db.Column(db.SmallInteger, nullable=False)
   lent = db.Column(db.SmallInteger, nullable=False) 
   available = db.Column(db.SmallInteger, nullable=False)
-  book = db.relationship('Book', backref='stock',uselist=False)
+  #book = db.relationship('Book', backref='stock',uselist=False)
   def __repr__(self):
     return '<Stock: %r>'% self.id
 

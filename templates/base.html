@@ -13,10 +13,13 @@
     {%- block styles %}
     <!-- Bootstrap -->
     <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+    <!--link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"-->
+    <link href="static/css/all.min.css" rel="stylesheet">
     {%- endblock styles %}
     {%- endblock head %}
   </head>
   <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block form_open %}{% endblock form_open %}
     {% block body %}
     
     {% block content %}
@@ -37,8 +40,8 @@
   	</button-->
         <div class="collapse navbar-collapse" id="navbarNav">
 	    <ul class="navbar-nav">
-	      <a class="nav-item h2 active" href="#">Home</a>
-	      <a class="nav-item h2" href="#">Books</a>
+	      <a class="nav-item h2 active" href="{{url_for('index')}}">Home</a>
+	      <a class="nav-item h2" href="{{url_for('books')}}">Books</a>
 	      <a class="nav-item h2 disabled" href="#">Members</a>
 	      <a class="nav-item h2" href="#">Transactions</a>
 	    </ul>
@@ -52,15 +55,14 @@
       {% block page_content %}
       <div class="page_content">
 	{% block sidebar %}
-	<div class="sidebar">
-
-	</div>
+	
 	{% endblock sidebar %}
 	{% block main %}
 	<div class="main">
 	  {% for message in get_flashed_messages() %}
 	  <div class="alert alert-warning">
-	    <button type="button" class="close" data_dismiss="alert">&times</button>
+	    <button type="submit" class="close" data_dismiss="alert" name="exit_page" value="selected">
+	    <i class="fas fa-x"></i></button>
 	    {{ message }}
 	  </div>
 	  {% endfor %}
@@ -77,6 +79,8 @@
     <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
     {%- endblock scripts %}
     {%- endblock body %}
+    {% block form_close %}
+    {% endblock form_close %}
   </body>
 {%- endblock html %}
 </html>

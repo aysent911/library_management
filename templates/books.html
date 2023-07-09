@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flask{% endblock %}
+{% block form_open %}
+<form action="{{ url_for('books') }}" method="POST">
+{% endblock form_open %}
+{% block sidebar %}
+<div class="sidebar">
+  <ul class="sidebar_list">
+    <li>
+      <span class="sidebar_item">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search">
+      </span>
+    </li>
+    <li>
+     <a class="sidebar_item" href="#">
+       <i class="fas fa-filter"></i>
+       <span class="sidebar_text">Filter</span>
+     </a>
+    </li>
+    <li>
+     <button class="sidebar_item" type="submit" name="add_book_menu" value="selected">
+     <!--unlike <input>, <button> can include <i>, <b>, <br> and <img> tags-->
+       <i class="fas fa-circle-plus"></i>
+       <span class="sidebar_text">Add a book</span>
+     </button>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+{% block main_content %}
+{% if menu == "add_book_menu" %}
+<!--div class="new_book_header"></div-->
+<div class="new_book_body">
+  <li>{{ form.ISBN.label(class="new_book_label") }}{{ form.ISBN(class="new_book_value")}}</li>
+  <li>{{ form.title.label(class="new_book_label") }}{{ form.title(class="new_book_value")}}</li>
+  <li>{{ form.author.label(class="new_book_label") }}{{ form.author(class="new_book_value")}}</li>
+  <li>{{ form.edition.label(class="new_book_label") }}{{ form.edition(class="new_book_value")}}</li>
+  <li>{{ form.publisher.label(class="new_book_label") }}{{ form.publisher(class="new_book_value")}}</li>
+  <li>{{ form.year_of_publication.label(class="new_book_label") }}{{ form.year_of_publication(class="new_book_value")}}</li>
+  <li>{{ form.subject.label(class="new_book_label") }}{{ form.subject(class="new_book_value")}}</li>
+  <li>{{ form.copies.label(class="new_book_label") }}{{ form.copies(class="new_book_value")}}</li>
+  <li><button class="new_book_button" type="submit" name="add_book_button" value="selected">Add</button>
+  <button class="new_book_button" type="submit" name="clear_book_button" value="selected">Clear</button></li>
+</div>
+{% else %}
+<div class="page-header">
+  <h1>Book, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+</div>
+{{ wtf.quick_form(form) }}
+{% endif %}
+{% endblock %}
+{% block form_close %}
+</form>
+{% endblock form_close %}
+
