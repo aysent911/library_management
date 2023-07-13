@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 db_user = 'flask';
 db_pass = 'flask_234'
 db_host = 'localhost'
@@ -16,6 +17,8 @@ app.config['SQLALCHEMY_DATABASE_URI']=connection_string
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
 #secret key for authenticating request form data in order to prent CSRF
 app.config['SECRET_KEY']= secret
+upload_folder = os.path.join(os.getcwd(),'photos')
+app.config['UPLOAD_FOLDER']= upload_folder
 # Define bootstrap_is_hidden_field for flask-bootstrap's bootstrap_wtf.html
 from wtforms.fields import HiddenField
 def is_hidden_field_filter(field):

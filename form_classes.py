@@ -1,7 +1,7 @@
 #import flask-wtf extension classes
 #flask-wtf makes working with web forms easier
 from flask_wtf.form import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, SubmitField, SelectField, IntegerField, FileField
 from wtforms.validators import InputRequired, DataRequired, Length, NumberRange
 from datetime import datetime
 
@@ -32,4 +32,12 @@ class NewBookForm(FlaskForm):
   copies = IntegerField("Copies: ", validators=[DataRequired()])
   add = SubmitField("Add")
   clear = SubmitField("Clear")
-    
+
+class NewMemberForm(FlaskForm):
+  first_name = StringField("First Name:", validators=[])
+  second_name = StringField("Second Name:", validators=[])
+  contact = StringField("Phone:", validators=[])
+  email = StringField("email:", validators=[])
+  photo = FileField("Member Photo:", validators=[])
+
+  

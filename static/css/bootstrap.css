@@ -94,7 +94,8 @@ menu,
 .container .page_content .sidebar .sidebar_list > li:hover,
 .container .page_content .sidebar .sidebar_list > li:hover .sidebar_item,
 .container .page_content .sidebar .sidebar_list > li:hover .sidebar_item .sidebar_text,
-.container .page_content .main .new_book_body > li .new_book_button:hover{
+.container .page_content .main .new_book_body > li .new_book_button:hover,
+.container .page_content .main .new_book_body > li .new_member_button:hover{
   background:#0000c0;
   /*color: #00008b;*/
   /*border-radius:5%;*/
@@ -108,7 +109,8 @@ menu,
 .container .page_content .sidebar .sidebar_list > li:active .sidebar_item,
 .container .page_content .sidebar .sidebar_list > li:active .sidebar_item .sidebar_text,
 .container .page_content .sidebar .sidebar_list > li:active .sidebar_item > input,
-.container .page_content .main .new_book_body > li .new_book_button:active{
+.container .page_content .main .new_book_body > li .new_book_button:active,
+.container .page_content .main .new_book_body > li .new_member_button:active{
   background:#ffffff;
   color: #00008b;
   /*border-radius:5%;*/
@@ -144,11 +146,14 @@ menu,
   font-weight: 600;
   text-align: center;
 }
-.container .page_content .main .new_book_body{
+.container .page_content .main .new_book_body,
+.container .page_content .main .new_member_body{
   padding-top: 2%;
   padding-bottom: 2%;
   margin-left: 3%;
   margin-right: 3%;
+  width: 90%;
+  height: 90%;
   /*font-weight: 200;
   text-align: center;*/
   background: #f0f0f0;
@@ -157,24 +162,53 @@ menu,
   border-color: black;*/
   box-shadow: -3px 3px 10px rgb(0 0 0 / 0.5);
 }
-.container .page_content .main .new_book_body > li{
+.container .page_content .main .new_book_body > li,
+.container .page_content .main .new_member_body > li,
+.container .page_content .main .new_member_body > div{
   padding-bottom: 2%;
   margin-left: 7%;
   margin-right: 7%;
   font-size: 18px;
+  width: 90%;
+  white-space: nowrap;/*display children in same line*/
   /*font-weight: 200;*/
   /*text-align: center;*/
 }
-.container .page_content .main .new_book_body > li .new_book_label{
+.container .page_content .main .new_member_body > div{
+  height: 50%
+}
+.container .page_content .main .new_member_body > div > span{
+  height: 100%
+}
+.container .page_content .main .new_book_body > li .new_book_label,
+.container .page_content .main .new_member_body > li .new_member_label,
+.container .page_content .main .new_member_body > div .new_member_label{
   width: 25%;
   font-weight: 600;
+  display: inline-block;/*display child in same line*/
+  /*background: white;*/
 }
-.container .page_content .main .new_book_body > li .new_book_value{
+.container .page_content .main .new_book_body > li .new_book_value,
+.container .page_content .main .new_member_body > li .new_member_value{
   width: 60%;
+  display: inline-block;
   /*font-weight: 200;
   text-align: center;*/
 }
-.container .page_content .main .new_book_body > li .new_book_button{  
+.container .page_content .main .new_member_body > div > span > input{
+  display: inline-block;
+  /*font-weight: 200;
+  text-align: center;*/
+}
+.container .page_content .main .new_member_body > div > span .member_image{
+  width: 30%;
+  height: 100%;
+  display: inline-block;
+  /*font-weight: 200;
+  text-align: center;*/
+}
+.container .page_content .main .new_book_body > li .new_book_button,
+.container .page_content .main .new_member_body > li .new_member_button{  
   margin-left: 5%;
   padding: 3px 5% 3px 5%;
   width: 35%;
