@@ -1,5 +1,5 @@
 from db_config import db, app, Book, Member, Transaction, Stock, upload_folder
-from form_classes import NameForm, NewBookForm, NewMemberForm
+from form_classes import NameForm, NewBookForm, NewMemberForm, NewTransactionForm
 from flask import render_template, session, url_for, redirect, flash, request
 from flask_bootstrap import Bootstrap
 from datetime import datetime
@@ -123,6 +123,72 @@ def members():
   
   return render_template('members.html', form = new_member_form, menu=menu)
 
+@app.route('/transactions', methods=['GET', 'POST'])
+def transactions():
+  menu = 'all_transactions'
+  all_transactions = Transaction.query.all()
+  new_transaction_form = NewTransactionForm()
+  if (request.form.get('add_transaction_menu') == 'selected'):
+    menu = 'new_transaction_menu'
+    return render_template('transactions.html', form=new_transaction_form, menu=menu)
+  if (request.form.get('add_transaction_button') == 'selected'):
+    menu = 'new_transaction_menu'
+    isbn = new_transaction_form.book_ISBN.data
+    member = new_transaction_form.member_id.data
+    type_of_transaction = new_transaction_form.transaction_type.data
+    available = 0
+    lent = 0
+    transaction_total = 0
+    print(type_of_transaction)
+    print(isbn)
+    if type_of_transaction == 'issue':
+      try:
+        for s in Stock.query.filter_by(book_ISBN=isbn).all():
+          available += s.available
+          lent += s.lent
+        
+        if available > 0 :
+          available -=1
+          lent +=1
+          s.available = available
+          s.lent = lent
+        else:
+          flash("Oops! book ISBN {} is out of stock. Please try again later!"
+           .format(isbn))
+          return render_template('transactions.html', form=new_transaction_form, menu=menu)
+          
+        for t in Transaction.query.filter_by(member_id=member, transaction_type='issue').all():
+          transaction_total += t.charge
+        print(transaction_total)  
+        transaction_total += new_transaction_form.charge.data
+        if transaction_total > 500:
+          flash("Oops! Member ID {} has reached maximum transaction limit."
+           "Please return some books to borrow again!".format(member))
+          return render_template('transactions.html', form=new_transaction_form, menu=menu)
+          
+        new_transaction = Transaction(
+         date = datetime.now().date(),
+         time = datetime.now().time(),
+         member_id = member,
+         book_ISBN = isbn,
+         transaction_type = type_of_transaction,
+         lease = new_transaction_form.lease.data,
+         charge = new_transaction_form.charge.data)
+         
+        db.session.add(new_transaction)
+        db.session.commit()
+      except Exception as e:
+        print(e)
+        db.session.rollback()
+      finally:
+        #print('Done')
+        db.session.close()
+        return redirect(url_for('transactions'))
+ 
+    elif type_of_transaction == 'return':
+      print("Done")
+  return render_template('transactions.html', form=new_transaction_form, trans = all_transactions, menu=menu)
+  
 if __name__ =='__main__':
 #create app_context()
 	app.run()

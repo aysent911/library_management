@@ -95,7 +95,8 @@ menu,
 .container .page_content .sidebar .sidebar_list > li:hover .sidebar_item,
 .container .page_content .sidebar .sidebar_list > li:hover .sidebar_item .sidebar_text,
 .container .page_content .main .new_book_body > li .new_book_button:hover,
-.container .page_content .main .new_book_body > li .new_member_button:hover{
+.container .page_content .main .new_member_body > li .new_member_button:hover,
+.container .page_content .main .new_transaction_body > li .new_transaction_button:hover{
   background:#0000c0;
   /*color: #00008b;*/
   /*border-radius:5%;*/
@@ -110,7 +111,8 @@ menu,
 .container .page_content .sidebar .sidebar_list > li:active .sidebar_item .sidebar_text,
 .container .page_content .sidebar .sidebar_list > li:active .sidebar_item > input,
 .container .page_content .main .new_book_body > li .new_book_button:active,
-.container .page_content .main .new_book_body > li .new_member_button:active{
+.container .page_content .main .new_member_body > li .new_member_button:active,
+.container .page_content .main .new_transaction_body > li .new_transaction_button:active{
   background:#ffffff;
   color: #00008b;
   /*border-radius:5%;*/
@@ -147,7 +149,8 @@ menu,
   text-align: center;
 }
 .container .page_content .main .new_book_body,
-.container .page_content .main .new_member_body{
+.container .page_content .main .new_member_body,
+.container .page_content .main .new_transaction_body{
   padding-top: 2%;
   padding-bottom: 2%;
   margin-left: 3%;
@@ -164,6 +167,7 @@ menu,
 }
 .container .page_content .main .new_book_body > li,
 .container .page_content .main .new_member_body > li,
+.container .page_content .main .new_transaction_body > li,
 .container .page_content .main .new_member_body > div{
   padding-bottom: 2%;
   margin-left: 7%;
@@ -182,6 +186,7 @@ menu,
 }
 .container .page_content .main .new_book_body > li .new_book_label,
 .container .page_content .main .new_member_body > li .new_member_label,
+.container .page_content .main .new_transaction_body > li .new_transaction_label,
 .container .page_content .main .new_member_body > div .new_member_label{
   width: 25%;
   font-weight: 600;
@@ -189,7 +194,8 @@ menu,
   /*background: white;*/
 }
 .container .page_content .main .new_book_body > li .new_book_value,
-.container .page_content .main .new_member_body > li .new_member_value{
+.container .page_content .main .new_member_body > li .new_member_value,
+.container .page_content .main .new_transaction_body > li .new_transaction_value{
   width: 60%;
   display: inline-block;
   /*font-weight: 200;
@@ -208,7 +214,8 @@ menu,
   text-align: center;*/
 }
 .container .page_content .main .new_book_body > li .new_book_button,
-.container .page_content .main .new_member_body > li .new_member_button{  
+.container .page_content .main .new_member_body > li .new_member_button,
+.container .page_content .main .new_transaction_body > li .new_transaction_button{  
   margin-left: 5%;
   padding: 3px 5% 3px 5%;
   width: 35%;
@@ -216,6 +223,29 @@ menu,
   background: #00008b;
   color: #ffffff;
   border: none;  
+}
+.container .page_content .main .all_transaction_body{
+  padding: 2% 2% 2% 2%;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 90%;
+  height: 90%;
+  /*font-weight: 200;
+  text-align: center;*/
+  background: #f0f0f0;
+  /*border-style: solid;
+  border-width: medium;
+  border-color: black;*/
+  box-shadow: -3px 3px 10px rgb(0 0 0 / 0.5);
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+}
+.container .page_content .main .all_transaction_body .transaction_item{
+  border: 1px solid rgba(127, 127, 127, 0.8);
+  text-align: center;
+  padding: 2% 2% 2% 2%;
+  font-weight:600;
+  color: black;
 }
 section,
 summary {

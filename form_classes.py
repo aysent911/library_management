@@ -4,7 +4,7 @@ from flask_wtf.form import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, IntegerField, FileField
 from wtforms.validators import InputRequired, DataRequired, Length, NumberRange
 from datetime import datetime
-
+from db_config import db, app, Book, Member, Transaction, Stock, upload_folder
 class NameForm(FlaskForm):
   name = StringField("What is your name?", validators=[])
   submit = SubmitField("<i class=\"fas fa-filter\" ></i>")
@@ -40,4 +40,18 @@ class NewMemberForm(FlaskForm):
   email = StringField("email:", validators=[])
   photo = FileField("Member Photo:", validators=[])
 
+class NewTransactionForm(FlaskForm):
+  member_id = SelectField("Member ID:", coerce = int)
+  book_ISBN = SelectField("Book ISBN:", coerce = str)
+  transaction_type = SelectField("Transaction Type:", choices=[("issue","Issue"),("return","Return")])
+  lease = SelectField("Lease Period(weeks):", choices=[(1,1),(2,2),(3,3),(4,4)])
+  charge = IntegerField("Charge (Kshs):", validators=[])
+  def __init__(self, *args, **kwargs):
+    super(NewTransactionForm,self).__init__(*args,**kwargs)
+    i=0
+    self.book_ISBN.choices = [(book.ISBN, book.ISBN)
+     for book in Book.query.order_by(Book.ISBN).all()]
+    self.member_id.choices = [(member.id, member.id)
+     for member in Member.query.order_by(Member.id).all()]
+  
   

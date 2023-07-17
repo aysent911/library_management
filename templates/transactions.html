@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flask{% endblock %}
+{% block form_open %}
+<form action="{{ url_for('transactions') }}" method="POST">
+{% endblock form_open %}
+{% block sidebar %}
+<div class="sidebar">
+  <ul class="sidebar_list">
+    <li>
+      <span class="sidebar_item">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search">
+      </span>
+    </li>
+    <li>
+     <a class="sidebar_item" href="#">
+       <i class="fas fa-filter"></i>
+       <span class="sidebar_text">Filter</span>
+     </a>
+    </li>
+    <li>
+     <button class="sidebar_item" type="submit" name="add_transaction_menu" value="selected">
+     <!--unlike <input>, <button> can include <i>, <b>, <br> and <img> tags-->
+       <i class="fas fa-circle-plus"></i>
+       <span class="sidebar_text">New Transaction</span>
+     </button>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+{% block main_content %}
+{% if menu == "new_transaction_menu" %}
+<!--div class="new_book_header"></div-->
+<div class="new_transaction_body">
+  <li>{{ form.member_id.label(class="new_transaction_label") }}{{ form.member_id(class="new_transaction_value")}}</li>
+  <li>{{ form.book_ISBN.label(class="new_transaction_label") }}{{ form.book_ISBN(class="new_transaction_value")}}</li>
+  <li>{{ form.transaction_type.label(class="new_transaction_label") }}{{ form.transaction_type(class="new_transaction_value")}}</li>
+  <li>{{ form.lease.label(class="new_transaction_label") }}{{ form.lease(class="new_transaction_value")}}</li>
+  <li>{{ form.charge.label(class="new_transaction_label") }}{{ form.charge(class="new_transaction_value")}}</li>
+  <li><button class="new_transaction_button" type="submit" name="add_transaction_button" value="selected">Add</button>
+  <button class="new_transaction_button" type="submit" name="clear_transaction_button" value="selected">Clear</button></li>
+</div>
+{% elif menu == "all_transactions" %}
+<div class="all_transaction_body">
+  <div class="transaction_item">ID</div>
+  <div class="transaction_item">Date</div>
+  <div class="transaction_item">Time</div>
+  <div class="transaction_item">Member ID</div>
+  <div class="transaction_item">Book ISBN</div>
+  <div class="transaction_item">Type</div>
+  <div class="transaction_item">Lease(weeks)</div>
+  <div class="transaction_item">Charge(Kshs)</div>
+  {% for t in trans %}
+  <div class="transaction_item">{{ t.id }}</div>
+  <div class="transaction_item">{{ t.date }}</div>
+  <div class="transaction_item">{{ t.time }}</div>
+  <div class="transaction_item">{{ t.member_id }}</div>
+  <div class="transaction_item">{{ t.book_ISBN }}</div>
+  <div class="transaction_item">{{ t.transaction_type }}</div>
+  <div class="transaction_item">{{ t.lease }}</div>
+  <div class="transaction_item">{{ t.charge }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
+{% block form_close %}
+</form>
+{% endblock form_close %}
+
